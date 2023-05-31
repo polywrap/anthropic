@@ -1,0 +1,7 @@
+format: 0.3.0
+project:
+  name: anthropic-api
+  type: wasm/rust
+source:
+  module: ./Cargo.toml
+  schema: ./polywrap.graphql

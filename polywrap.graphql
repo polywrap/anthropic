@@ -1,0 +1,31 @@
+#import { Module, Request, Response, ResponseType } into Http from "wrap://ens/wraps.eth:http@1.1.0"
+
+type Env {
+    api_key: String!
+    api_url: String
+}
+
+type Module {
+    complete(params: SamplingParameters!): CompletionResponse! @env(required: true)
+}
+
+type SamplingParameters {
+    prompt: String!
+    temperature: BigNumber
+    maxTokensToSample: UInt!
+    stopSequences: [String!]!
+    topK: UInt
+    topP: BigNumber
+    model: String!
+    tags: Map @annotate(type: "Map<String!, String!>")
+}
+
+type CompletionResponse {
+    completion: String!
+    stop: String
+    stopReason: String!
+    truncated: Boolean!
+    exception: String
+    logId: String!
+}
+
